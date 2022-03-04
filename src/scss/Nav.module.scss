@@ -1,0 +1,106 @@
+@import "variables.scss";
+
+.nav{
+    width: 100%;
+    height: 68px;
+    color:$color-white;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    transition-timing-function: ease-in;
+    transition: all 0.5s;
+
+    &.black{
+        background-color: $color-black;
+    }
+
+    .container{
+        width: 93%;
+        display:flex;
+        justify-content: space-between;
+        .left{
+            display:flex;
+            align-items:center;
+            justify-content: space-around;
+
+            ul{
+                display: flex;
+                align-items: center;
+                list-style: none;
+                margin-left: 20px;
+                li{
+                    margin-left: 20px;
+                    font-size:11px;
+                    color:$color-primary;
+                    line-height: 1.2;
+                    transition:0.4s;
+                    font-family: Helvetica, Arial, sans-serif;
+                    &:hover{
+                        cursor: pointer;
+                        color:#b3b3b3;
+                    }
+                }
+            }
+
+            img{
+                width:92.5px;
+                height:30px;
+                transform: scale(1.2);
+                object-fit: contain;
+                cursor: pointer;
+                
+                
+            }
+        }
+        .right{
+            display:flex;
+            justify-content: space-around;
+            align-self: center;
+
+            *{
+                margin-right: 20px;
+                cursor: pointer;
+                height: 28px;
+                width: 28px;
+            }
+            span{
+                display: flex;
+                align-items: center;
+            }
+            img{
+                
+                width: 30px;
+                height:30px;
+                object-fit: contain;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+            .dropdown{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .options{
+                    display:none;
+                    background-color: $color-black;
+                    border-radius: 5px;
+                    span{
+                        cursor: pointer;
+                    }
+                }
+                
+                &:hover{
+                    .options{
+                        display: flex;
+                        flex-direction: column;
+                        position: absolute;
+                    }
+                }
+               
+            }
+        }
+    }
+}
+

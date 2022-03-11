@@ -4,18 +4,18 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getOriginals } from "../redux/NetflixOriginalsSlice";
+import { getSingleOriginal } from "../redux/NetflixOriginalsSlice";
 
 
 function Main() {
 
-    const dispatch = useDispatch();
-    const originals = useSelector(state => state.originals.originals);
-    console.log(originals);
+  const dispatch = useDispatch();
+  const single = useSelector(state => state.originals.single);
+  
 
-    useEffect(() => {
-      dispatch(getOriginals());
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(getSingleOriginal());
+  }, [dispatch])
 
 
   const truncate = (str, n) => {
@@ -26,18 +26,22 @@ function Main() {
 
     <div className={styles.main} style={{
       backgroundSize: 'cover',
-      backgroundImage: `url("https://image.tmdb.org/t/p/original/${originals?.backdrop_path}")`,
+      backgroundImage: `url("https://image.tmdb.org/t/p/original/${single?.backdrop_path}")`,
       backgroundPosition: 'center center',
     }}>
       <div className={styles.content}>
-        <h1>{originals.name}</h1>
-        <p>{truncate(`${originals.overview}`,150)}</p>
+        <h1>
+          {
+           single?.title || single?.name || single?.original_name
+          }
+        </h1>
+        <p>{truncate(`${single.overview? single.overview : ""}`, 150)}</p>
         <div className={styles.contentButtons}>
-          <button className={styles.playButton}><PlayArrowIcon fontSize="large"/>Play</button>
-          <button className={styles.infoButton}><InfoOutlinedIcon fontSize="large"/> More info</button>
+          <button className={styles.playButton}><PlayArrowIcon fontSize="large" />Play</button>
+          <button className={styles.infoButton}><InfoOutlinedIcon fontSize="large" /> More info</button>
         </div>
       </div>
-      
+
     </div>
   )
 }
